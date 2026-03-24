@@ -1,0 +1,1 @@
+{"version":3,"file":"ListHistoryUseCase.js","sourceRoot":"","sources":["../../../src/app/use-cases/ListHistoryUseCase.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,kBAAkB;IAEV;IADnB,YACmB,UAAuC;QAAvC,eAAU,GAAV,UAAU,CAA6B;IACvD,CAAC;IAEJ,KAAK,CAAC,OAAO,CAAC,IAAY;QACxB,OAAO,IAAI,CAAC,UAAU,CAAC,OAAO,CAAC,IAAI,CAAC,CAAC;IACvC,CAAC;CACF"}

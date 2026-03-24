@@ -1,0 +1,60 @@
+export class HistoryController {
+    listHistoryUseCase;
+    addOrderUseCase;
+    listEquipmentsUseCase;
+    constructor(listHistoryUseCase, addOrderUseCase, listEquipmentsUseCase) {
+        this.listHistoryUseCase = listHistoryUseCase;
+        this.addOrderUseCase = addOrderUseCase;
+        this.listEquipmentsUseCase = listEquipmentsUseCase;
+    }
+    list = async (req, res) => {
+        try {
+            const slug = req.params.slug;
+            if (!slug) {
+                res.status(400).json({ error: "Slug do equipamento é obrigatório." });
+                return;
+            }
+            const orders = await this.listHistoryUseCase.execute(slug);
+            res.json({ equipment: slug, orders });
+        }
+        catch (error) {
+            if (error instanceof Error && error.message.includes("não encontrado")) {
+                res.status(404).json({ error: error.message });
+                return;
+            }
+            console.error("Erro ao listar histórico:", error);
+            res.status(500).json({ error: "Erro interno do servidor." });
+        }
+    };
+    add = async (req, res) => {
+        try {
+            const slug = req.params.slug;
+            const orderData = req.body;
+            if (!slug) {
+                res.status(400).json({ error: "Slug do equipamento é obrigatório." });
+                return;
+            }
+            if (!orderData.ordem) {
+                res.status(400).json({ error: "Número da ordem é obrigatório." });
+                return;
+            }
+            await this.addOrderUseCase.execute(slug, orderData);
+            res.status(201).json({ message: "Ordem adicionada com sucesso." });
+        }
+        catch (error) {
+            console.error("Erro ao adicionar ordem:", error);
+            res.status(500).json({ error: "Erro interno do servidor." });
+        }
+    };
+    listEquipments = async (_req, res) => {
+        try {
+            const equipments = await this.listEquipmentsUseCase.execute();
+            res.json({ equipments });
+        }
+        catch (error) {
+            console.error("Erro ao listar equipamentos:", error);
+            res.status(500).json({ error: "Erro interno do servidor." });
+        }
+    };
+}
+//# sourceMappingURL=HistoryController.js.map
