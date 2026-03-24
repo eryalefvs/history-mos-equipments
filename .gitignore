@@ -20,7 +20,7 @@ package-lock.json
 # ========================
 # Dados / Arquivos Excel
 # ========================
-server/data/
+# server/data/
 ~$*.xlsx
 *.tmp
 
