@@ -1,0 +1,69 @@
+# ========================
+# Dependências
+# ========================
+node_modules/
+package-lock.json
+
+# ========================
+# Build / Compilação
+# ========================
+server/dist/
+client/dist/
+
+# ========================
+# Variáveis de ambiente
+# ========================
+.env
+.env.*
+!.env.example
+
+# ========================
+# Dados / Arquivos Excel
+# ========================
+server/data/
+~$*.xlsx
+*.tmp
+
+# ========================
+# Logs
+# ========================
+logs/
+*.log
+npm-debug.log*
+
+# ========================
+# Sistema operacional
+# ========================
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+*.swo
+
+# ========================
+# IDEs e Editores
+# ========================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ========================
+# Docker (volumes locais)
+# ========================
+docker-compose.override.yml
+
+# ========================
+# Cobertura de testes
+# ========================
+coverage/
+.nyc_output/
+
+# ========================
+# Misc
+# ========================
+*.tgz
+.cache/

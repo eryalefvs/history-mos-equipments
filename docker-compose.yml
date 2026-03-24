@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: ./server
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - EXCEL_DATA_DIR=/app/data
+    volumes:
+      - ./server/data:/app/data
+
+  frontend:
+    build:
+      context: ./client
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
