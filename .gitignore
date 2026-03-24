@@ -51,6 +51,8 @@ Desktop.ini
 *.sln
 *.sw?
 
+*.md
+
 # ========================
 # Docker (volumes locais)
 # ========================
