@@ -12,7 +12,9 @@ COPY package*.json ./
 RUN npm install --omit=dev
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/data ./data
+COPY entrypoint.sh ./
+RUN chmod +x entrypoint.sh
 
 EXPOSE 3000
 ENV PORT=3000
-CMD ["node", "dist/index.js"]
+CMD ["./entrypoint.sh"]
