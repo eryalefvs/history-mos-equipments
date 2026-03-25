@@ -14,5 +14,8 @@ export function createRoutes(): Router {
   // Adiciona uma nova OM ao equipamento
   router.post("/api/history/:slug", controller.add);
 
+  // Upload de arquivo Excel para popular o banco de dados
+  router.post("/api/upload", controller.upload);
+
   return router;
 }
