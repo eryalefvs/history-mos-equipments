@@ -82,14 +82,11 @@ export class HistoryController {
         return;
       }
 
-      if (!fileName.endsWith(".xlsx")) {
-        res.status(400).json({ error: "Apenas arquivos .xlsx são aceitos." });
-        return;
-      }
-
+      // Se o usuário mandou o nome sem extensão, a gente aceita e apenas limpa caracteres inválidos
       const slug = fileName
-        .replace(/\.xlsx$/i, "")
-        .replace(/[^a-zA-Z0-9_\-]/g, "");
+        .toLowerCase()
+        .replace(/\.xlsx$/i, "") // Remove a extensão se existir
+        .replace(/[^a-z0-9_\-]/g, ""); // Remove qualquer coisa que não seja alfanumérica, underline ou traço
 
       const buffer = Buffer.from(fileBase64, "base64");
       const orders: MaintenanceOrder[] = parseExcelBuffer(buffer);
