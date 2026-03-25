@@ -2,13 +2,16 @@ import type { Request, Response } from "express";
 import type { ListHistoryUseCase } from "../../app/use-cases/ListHistoryUseCase.js";
 import type { AddOrderUseCase } from "../../app/use-cases/AddOrderUseCase.js";
 import type { ListEquipmentsUseCase } from "../../app/use-cases/ListEquipmentsUseCase.js";
-import type { AddMaintenanceOrderInput } from "../../domain/entities/MaintenanceOrder.js";
+import type { SeedEquipmentUseCase } from "../../app/use-cases/SeedEquipmentUseCase.js";
+import type { AddMaintenanceOrderInput, MaintenanceOrder } from "../../domain/entities/MaintenanceOrder.js";
+import { parseExcelBuffer } from "../../infra/excel/parseExcelBuffer.js";
 
 export class HistoryController {
   constructor(
     private readonly listHistoryUseCase: ListHistoryUseCase,
     private readonly addOrderUseCase: AddOrderUseCase,
-    private readonly listEquipmentsUseCase: ListEquipmentsUseCase
+    private readonly listEquipmentsUseCase: ListEquipmentsUseCase,
+    private readonly seedEquipmentUseCase: SeedEquipmentUseCase
   ) {}
 
   list = async (req: Request, res: Response): Promise<void> => {
@@ -62,6 +65,45 @@ export class HistoryController {
     } catch (error) {
       console.error("Erro ao listar equipamentos:", error);
       res.status(500).json({ error: "Erro interno do servidor." });
+    }
+  };
+
+  upload = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { fileName, fileBase64 } = req.body as {
+        fileName?: string;
+        fileBase64?: string;
+      };
+
+      if (!fileName || !fileBase64) {
+        res
+          .status(400)
+          .json({ error: "fileName e fileBase64 são obrigatórios." });
+        return;
+      }
+
+      if (!fileName.endsWith(".xlsx")) {
+        res.status(400).json({ error: "Apenas arquivos .xlsx são aceitos." });
+        return;
+      }
+
+      const slug = fileName
+        .replace(/\.xlsx$/i, "")
+        .replace(/[^a-zA-Z0-9_\-]/g, "");
+
+      const buffer = Buffer.from(fileBase64, "base64");
+      const orders: MaintenanceOrder[] = parseExcelBuffer(buffer);
+
+      await this.seedEquipmentUseCase.execute(slug, orders);
+
+      res.json({
+        message: `${orders.length} ordens importadas para "${slug}".`,
+        equipment: slug,
+        count: orders.length,
+      });
+    } catch (error) {
+      console.error("Erro no upload:", error);
+      res.status(500).json({ error: "Erro ao processar arquivo." });
     }
   };
 }
