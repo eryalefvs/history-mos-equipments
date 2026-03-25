@@ -1,24 +1,22 @@
-import * as path from "node:path";
-import { fileURLToPath } from "node:url";
-import { ExcelOrderRepository } from "../infra/repositories/ExcelOrderRepository.js";
+import { PostgresOrderRepository } from "../infra/repositories/PostgresOrderRepository.js";
+import { pool } from "../infra/db.js";
 import { ListHistoryUseCase } from "../app/use-cases/ListHistoryUseCase.js";
 import { AddOrderUseCase } from "../app/use-cases/AddOrderUseCase.js";
 import { ListEquipmentsUseCase } from "../app/use-cases/ListEquipmentsUseCase.js";
+import { SeedEquipmentUseCase } from "../app/use-cases/SeedEquipmentUseCase.js";
 import { HistoryController } from "../presentation/controllers/HistoryController.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 export function makeHistoryController(): HistoryController {
-  const dataDir = process.env["EXCEL_DATA_DIR"] ?? path.resolve(__dirname, "../../data");
-
-  const repository = new ExcelOrderRepository(dataDir);
+  const repository = new PostgresOrderRepository(pool);
   const listHistoryUseCase = new ListHistoryUseCase(repository);
   const addOrderUseCase = new AddOrderUseCase(repository);
   const listEquipmentsUseCase = new ListEquipmentsUseCase(repository);
+  const seedEquipmentUseCase = new SeedEquipmentUseCase(repository);
 
   return new HistoryController(
     listHistoryUseCase,
     addOrderUseCase,
-    listEquipmentsUseCase
+    listEquipmentsUseCase,
+    seedEquipmentUseCase
   );
 }
