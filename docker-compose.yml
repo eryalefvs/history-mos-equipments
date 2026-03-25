@@ -1,4 +1,15 @@
 services:
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: historico_oms
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
   backend:
     build:
       context: ./server
@@ -6,9 +17,11 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
-      - EXCEL_DATA_DIR=/app/data
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/historico_oms
     volumes:
       - ./server/data:/app/data
+    depends_on:
+      - db
 
   frontend:
     build:
@@ -17,3 +30,6 @@ services:
       - "8080:80"
     depends_on:
       - backend
+
+volumes:
+  pgdata:
