@@ -1,11 +1,14 @@
+import { parseExcelBuffer } from "../../infra/excel/parseExcelBuffer.js";
 export class HistoryController {
     listHistoryUseCase;
     addOrderUseCase;
     listEquipmentsUseCase;
-    constructor(listHistoryUseCase, addOrderUseCase, listEquipmentsUseCase) {
+    seedEquipmentUseCase;
+    constructor(listHistoryUseCase, addOrderUseCase, listEquipmentsUseCase, seedEquipmentUseCase) {
         this.listHistoryUseCase = listHistoryUseCase;
         this.addOrderUseCase = addOrderUseCase;
         this.listEquipmentsUseCase = listEquipmentsUseCase;
+        this.seedEquipmentUseCase = seedEquipmentUseCase;
     }
     list = async (req, res) => {
         try {
@@ -54,6 +57,36 @@ export class HistoryController {
         catch (error) {
             console.error("Erro ao listar equipamentos:", error);
             res.status(500).json({ error: "Erro interno do servidor." });
+        }
+    };
+    upload = async (req, res) => {
+        try {
+            const { fileName, fileBase64 } = req.body;
+            if (!fileName || !fileBase64) {
+                res
+                    .status(400)
+                    .json({ error: "fileName e fileBase64 são obrigatórios." });
+                return;
+            }
+            if (!fileName.endsWith(".xlsx")) {
+                res.status(400).json({ error: "Apenas arquivos .xlsx são aceitos." });
+                return;
+            }
+            const slug = fileName
+                .replace(/\.xlsx$/i, "")
+                .replace(/[^a-zA-Z0-9_\-]/g, "");
+            const buffer = Buffer.from(fileBase64, "base64");
+            const orders = parseExcelBuffer(buffer);
+            await this.seedEquipmentUseCase.execute(slug, orders);
+            res.json({
+                message: `${orders.length} ordens importadas para "${slug}".`,
+                equipment: slug,
+                count: orders.length,
+            });
+        }
+        catch (error) {
+            console.error("Erro no upload:", error);
+            res.status(500).json({ error: "Erro ao processar arquivo." });
         }
     };
 }

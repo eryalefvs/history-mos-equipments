@@ -1,13 +1,12 @@
+import type pg from "pg";
 import type { IMaintenanceOrderRepository } from "../../domain/repositories/IMaintenanceOrderRepository.js";
 import type { MaintenanceOrder, AddMaintenanceOrderInput } from "../../domain/entities/MaintenanceOrder.js";
-export declare class ExcelOrderRepository implements IMaintenanceOrderRepository {
-    private readonly dataDir;
-    constructor(dataDir: string);
+export declare class PostgresOrderRepository implements IMaintenanceOrderRepository {
+    private readonly pool;
+    constructor(pool: pg.Pool);
     listAll(slug: string): Promise<MaintenanceOrder[]>;
     add(slug: string, order: AddMaintenanceOrderInput): Promise<void>;
     listEquipments(): Promise<string[]>;
-    seedEquipment(_slug: string, _orders: MaintenanceOrder[]): Promise<void>;
-    private resolveFilePath;
-    private mapRowToEntity;
+    seedEquipment(slug: string, orders: MaintenanceOrder[]): Promise<void>;
 }
-//# sourceMappingURL=ExcelOrderRepository.d.ts.map
+//# sourceMappingURL=PostgresOrderRepository.d.ts.map

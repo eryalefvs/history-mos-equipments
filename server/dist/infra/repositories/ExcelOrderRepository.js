@@ -67,6 +67,9 @@ export class ExcelOrderRepository {
             .filter((f) => f.endsWith(".xlsx") && !f.startsWith("~$"))
             .map((f) => f.replace(".xlsx", ""));
     }
+    async seedEquipment(_slug, _orders) {
+        throw new Error("Seed não suportado no repositório Excel. Use PostgresOrderRepository.");
+    }
     resolveFilePath(slug) {
         // Sanitiza o slug para evitar path traversal
         const safeName = slug.replace(/[^a-zA-Z0-9_\-]/g, "");
