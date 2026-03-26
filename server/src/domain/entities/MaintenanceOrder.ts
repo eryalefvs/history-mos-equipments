@@ -33,17 +33,17 @@ export interface AddMaintenanceOrderInput {
 /** Mapeamento: nome da coluna no Excel → campo da entidade */
 export const EXCEL_COLUMN_MAP: Record<string, keyof MaintenanceOrder> = {
   "Ordem": "ordem",
-  "Data base de início": "dataInicio",
-  "Data base de fim": "dataFim",
+  "Data-base do início": "dataInicio",
+  "Data-base do fim": "dataFim",
   "Local de instalação": "localInstalacao",
   "Tipo de ordem": "tipoOrdem",
   "Texto breve": "textoBreve",
   "Status usuário": "statusUsuario",
   "Denominação do loc.instalação": "denominacaoLocal",
-  "Data da entrada": "dataEntrada",
+  "Data de entrada": "dataEntrada",
   "Centro de trabalho": "centroTrabalho",
   "Tipo de prioridade": "tipoPrioridade",
-  "Centro trab.responsável": "centroTrabResponsavel",
+  "Centro trab.respons.": "centroTrabResponsavel",
   "Prioridade": "prioridade",
 };
 
