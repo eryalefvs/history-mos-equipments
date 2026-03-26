@@ -6,17 +6,17 @@ import AddOrderModal from "../components/AddOrderModal";
 const TABLE_COLUMNS: { key: keyof MaintenanceOrder; label: string }[] = [
   { key: "ordem", label: "Ordem" },
   { key: "dataInicio", label: "Data Início" },
-  { key: "dataFim", label: "Data Fim" },
-  { key: "localInstalacao", label: "Local Instalação" },
+  // { key: "dataFim", label: "Data Fim" },
+  // { key: "localInstalacao", label: "Local Instalação" },
   { key: "tipoOrdem", label: "Tipo de Ordem" },
   { key: "textoBreve", label: "Texto Breve" },
   { key: "statusUsuario", label: "Status" },
-  { key: "denominacaoLocal", label: "Denominação Local" },
+  // { key: "denominacaoLocal", label: "Denominação Local" },
   { key: "dataEntrada", label: "Data Entrada" },
   { key: "centroTrabalho", label: "Centro Trabalho" },
-  { key: "tipoPrioridade", label: "Tipo Prioridade" },
+  // { key: "tipoPrioridade", label: "Tipo Prioridade" },
   { key: "centroTrabResponsavel", label: "Centro Resp." },
-  { key: "prioridade", label: "Prioridade" },
+  // { key: "prioridade", label: "Prioridade" },
 ];
 
 export default function HistoryPage() {

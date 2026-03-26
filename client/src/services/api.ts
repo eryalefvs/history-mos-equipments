@@ -3,17 +3,17 @@ const API_BASE = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 export interface MaintenanceOrder {
   ordem: string;
   dataInicio: string;
-  dataFim: string;
-  localInstalacao: string;
+  dataFim?: string;
+  localInstalacao?: string;
   tipoOrdem: string;
   textoBreve: string;
   statusUsuario: string;
-  denominacaoLocal: string;
+  denominacaoLocal?: string;
   dataEntrada: string;
   centroTrabalho: string;
-  tipoPrioridade: string;
+  tipoPrioridade?: string;
   centroTrabResponsavel: string;
-  prioridade: string;
+  prioridade?: string;
 }
 
 export interface AddMaintenanceOrderInput {
