@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
 
@@ -52,7 +52,7 @@ function Header() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header />
       <main className="main-content">
         <Routes>
@@ -60,6 +60,6 @@ export default function App() {
           <Route path="/equipamento/:slug" element={<HistoryPage />} />
         </Routes>
       </main>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
