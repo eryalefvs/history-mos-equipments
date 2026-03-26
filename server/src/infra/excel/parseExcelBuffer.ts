@@ -18,6 +18,7 @@ export function parseExcelBuffer(buffer: Buffer): MaintenanceOrder[] {
   const sheet = workbook.Sheets[sheetName]!;
   const rawRows: Record<string, unknown>[] = XLSX.utils.sheet_to_json(sheet, {
     defval: "",
+    raw: false,
   });
 
   return rawRows.map((row) => {
