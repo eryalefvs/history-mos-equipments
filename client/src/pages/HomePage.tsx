@@ -29,7 +29,7 @@ export default function HomePage() {
   return (
     <>
       <section className="hero">
-        <h1>Histórico de OMs</h1>
+        <h1>Histórico de OMs dos Equipamentos</h1>
         <p>
           Busque por equipamento ou escaneie o QR Code para visualizar o
           histórico de ordens de manutenção.
