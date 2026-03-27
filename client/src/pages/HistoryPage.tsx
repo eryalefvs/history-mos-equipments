@@ -12,7 +12,7 @@ const TABLE_COLUMNS: { key: keyof MaintenanceOrder; label: string }[] = [
   { key: "textoBreve", label: "Texto Breve" },
   { key: "statusUsuario", label: "Status" },
   // { key: "denominacaoLocal", label: "Denominação Local" },
-  { key: "dataEntrada", label: "Data Entrada" },
+  // { key: "dataEntrada", label: "Data Entrada" },
   { key: "centroTrabalho", label: "Centro Trabalho" },
   // { key: "tipoPrioridade", label: "Tipo Prioridade" },
   { key: "centroTrabResponsavel", label: "Centro Resp." },

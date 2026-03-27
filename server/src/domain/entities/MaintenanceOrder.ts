@@ -7,7 +7,7 @@ export interface MaintenanceOrder {
   textoBreve: string;
   statusUsuario: string;
   denominacaoLocal?: string;
-  dataEntrada: string;
+  dataEntrada?: string;
   centroTrabalho: string;
   tipoPrioridade?: string;
   centroTrabResponsavel: string;
@@ -23,7 +23,7 @@ export interface AddMaintenanceOrderInput {
   textoBreve: string;
   statusUsuario: string;
   denominacaoLocal?: string;
-  dataEntrada: string;
+  dataEntrada?: string;
   centroTrabalho: string;
   tipoPrioridade?: string;
   centroTrabResponsavel: string;
@@ -40,7 +40,7 @@ export const EXCEL_COLUMN_MAP: Record<string, keyof MaintenanceOrder> = {
   "Texto breve": "textoBreve",
   "Status usuário": "statusUsuario",
   //"Denominação do loc.instalação": "denominacaoLocal",
-  "Data de entrada": "dataEntrada",
+  //"Data de entrada": "dataEntrada",
   "Centro de trabalho": "centroTrabalho",
   //"Tipo de prioridade": "tipoPrioridade",
   "Centro trab.respons.": "centroTrabResponsavel",
