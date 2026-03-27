@@ -31,7 +31,25 @@ export default function HistoryPage() {
     setLoading(true);
     setError("");
     fetchHistory(slug)
-      .then(setOrders)
+      .then((data) => {
+        const sortedData = [...data].sort((a, b) => {
+          const parseDate = (dateStr?: string) => {
+            if (!dateStr) return 0;
+            if (dateStr.includes("/")) {
+              const [day, month, year] = dateStr.split(" ")[0].split("/");
+              if (day && month && year) {
+                let y = parseInt(year, 10);
+                if (y < 100) y += 2000;
+                return new Date(y, parseInt(month, 10) - 1, parseInt(day, 10)).getTime();
+              }
+            }
+            const time = Date.parse(dateStr);
+            return isNaN(time) ? 0 : time;
+          };
+          return parseDate(b.dataInicio) - parseDate(a.dataInicio);
+        });
+        setOrders(sortedData);
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   };
