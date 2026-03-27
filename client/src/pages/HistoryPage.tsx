@@ -36,7 +36,7 @@ export default function HistoryPage() {
           const parseDate = (dateStr?: string) => {
             if (!dateStr) return 0;
             if (dateStr.includes("/")) {
-              const [day, month, year] = dateStr.split(" ")[0].split("/");
+              const [month, day, year] = dateStr.split(" ")[0].split("/");
               if (day && month && year) {
                 let y = parseInt(year, 10);
                 if (y < 100) y += 2000;
