@@ -26,9 +26,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header-inner">
-        <Link to="/" className="header-logo">
-          <img src="/src/assets/Vale_logo.png" alt="Logo Vale" />
-        </Link>
+        <img src="/src/assets/Vale_logo.png" alt="Logo Vale" />
         <nav className="header-nav">
           <Link to="/" className={location.pathname === "/" ? "active" : ""}>
             Início
