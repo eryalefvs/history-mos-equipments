@@ -27,7 +27,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header-inner">
-        <div className="header-logo">
+        <div className="header-logo-icon">
           <img src={valeLogo} alt="Logo Vale" />
         </div>
         <nav className="header-nav">
