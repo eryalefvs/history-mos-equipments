@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { HashRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
+import valeLogo from "./assets/Vale_logo.png";
 
 function getInitialTheme(): "light" | "dark" {
   const stored = localStorage.getItem("theme");
@@ -26,7 +27,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header-inner">
-        <img src="/src/assets/Vale_logo.png" alt="Logo Vale" />
+        <img src={valeLogo} alt="Logo Vale" />
         <nav className="header-nav">
           <Link to="/" className={location.pathname === "/" ? "active" : ""}>
             Início
