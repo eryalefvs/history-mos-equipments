@@ -27,9 +27,11 @@ function Header() {
   return (
     <header className="header">
       <div className="header-inner">
-        <div className="header-logo-icon">
-          <img src={valeLogo} alt="Logo Vale" />
-        </div>
+        <Link to="/" className="header-logo">
+          <div className="header-logo-icon">
+            <img src={valeLogo} alt="Logo Vale" />
+          </div>
+        </Link>
         <nav className="header-nav">
           <Link to="/" className={location.pathname === "/" ? "active" : ""}>
             Início
