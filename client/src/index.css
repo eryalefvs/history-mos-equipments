@@ -124,14 +124,16 @@ body {
 }
 
 .header-logo-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--gradient-accent);
-  border-radius: var(--radius-sm);
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+}
+
+.header-logo-icon img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
 }
 
 .header-logo-text {
