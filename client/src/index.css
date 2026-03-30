@@ -10,14 +10,14 @@
   --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
+  --accent: #055853;
+  --accent-hover: #055853;
   --accent-glow: rgba(59, 130, 246, 0.3);
   --success: #10b981;
   --success-glow: rgba(16, 185, 129, 0.3);
   --warning: #f59e0b;
   --danger: #ef4444;
-  --gradient-accent: linear-gradient(135deg, #034944 0%, #088ca3 100%);
+  --gradient-accent: linear-gradient(135deg, #055853 0%, #088ca3 100%);
   --gradient-bg: linear-gradient(135deg, #030505 0%, #081414 50%, #041414 100%);
   --header-bg: rgba(14, 13, 13, 0.85);
   --table-row-border: rgba(255, 255, 255, 0.03);
