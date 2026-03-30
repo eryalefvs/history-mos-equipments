@@ -17,11 +17,11 @@
   --success-glow: rgba(16, 185, 129, 0.3);
   --warning: #f59e0b;
   --danger: #ef4444;
-  --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-  --gradient-bg: linear-gradient(135deg, #0a0e1a 0%, #1a1040 50%, #0a0e1a 100%);
-  --header-bg: rgba(10, 14, 26, 0.85);
+  --gradient-accent: linear-gradient(135deg, #034944 0%, #088ca3 100%);
+  --gradient-bg: linear-gradient(135deg, #030505 0%, #081414 50%, #041414 100%);
+  --header-bg: rgba(14, 13, 13, 0.85);
   --table-row-border: rgba(255, 255, 255, 0.03);
-  --table-header-bg: rgba(59, 130, 246, 0.08);
+  --table-header-bg: rgba(14, 13, 13, 0);
   --table-hover: rgba(59, 130, 246, 0.05);
   --radius-sm: 8px;
   --radius-md: 12px;
