@@ -28,7 +28,7 @@ function Header() {
       <div className="header-inner">
         <Link to="/" className="header-logo">
           <div className="header-logo-icon">
-            <img src="/src/assets/logo-vale-escudo.png" alt="Logo Vale" />
+            <img src="/src/assets/Vale_logo.png" alt="Logo Vale" />
           </div>
         </Link>
         <nav className="header-nav">
