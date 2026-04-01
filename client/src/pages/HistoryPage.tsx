@@ -75,7 +75,7 @@ export default function HistoryPage() {
           </h1>
           {!loading && !error && (
             <span className="badge badge-count">
-              {orders.length} ordem{orders.length !== 1 ? "s" : ""}
+              {orders.length} orde{orders.length !== 1 ? "ns" : "m"}
             </span>
           )}
         </div>
